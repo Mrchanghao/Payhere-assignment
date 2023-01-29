@@ -1,4 +1,3 @@
-import "./App.css";
 import { Layout } from "./pages/Layout";
 import { Routes } from "./pages/Routes";
 

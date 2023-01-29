@@ -1,7 +1,10 @@
 import Axios from 'axios';
 
 const axios = Axios.create({
-  baseURL: "https://api.github.com"
+  baseURL: "https://api.github.com",
+  headers: {
+    Accept: "application/vnd.github+json"
+    }
 });
 
 export const request = {
