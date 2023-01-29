@@ -17,6 +17,8 @@ export interface Repo {
   watchers: number;
   watchers_count: number;
   owner: Owner;
+  description: string;
+  stargazers_count: number // 스타 갯수
 }
 
 export interface Owner {
