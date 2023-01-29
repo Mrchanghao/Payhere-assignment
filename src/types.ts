@@ -16,9 +16,7 @@ export interface Repo {
   open_issues_count: number;
   watchers: number;
   watchers_count: number;
-  owner: {
-    
-  }
+  owner: Owner;
 }
 
 export interface Owner {
