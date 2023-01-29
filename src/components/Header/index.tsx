@@ -14,7 +14,7 @@ export const Header = () => {
   };
 
   const debounceResult = useMemo(() => {
-    return debounce(onChangeHandler, 500);
+    return debounce(onChangeHandler, 200);
   }, []);
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {

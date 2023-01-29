@@ -20,7 +20,7 @@ export function SearchRepos() {
       registeredRepo: [...storeRepo.registeredRepo, { name, owner: login }],
     });
   };
-  if (repos.data.length === 0) return null;
+  if (repos.data.length === 0) return <h1>상단의 검색어를 입력하세요</h1>;
   return (
     <div>
       <h1>Searching results</h1>
