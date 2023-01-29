@@ -1,25 +1,10 @@
 import debounce from "lodash.debounce";
-import {
-  ChangeEvent,
-  EventHandler,
-  FormEvent,
-  FormEventHandler,
-  useMemo,
-} from "react";
+import { ChangeEvent, FormEvent, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { SearchState } from "../../atom/searchState";
 import { Input } from "../Input";
-
-export interface Props {}
-
-const TopHeader = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-`;
+import { TopHeader } from "./styles";
 
 // 스타일 수정
 export const Header = () => {

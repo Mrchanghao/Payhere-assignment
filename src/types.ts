@@ -47,3 +47,10 @@ export interface Owner {
 
   url: string;
 }
+
+export interface CustomRepo {
+  registeredRepo: {
+    name: string;
+    owner: string;
+  }[]
+}
