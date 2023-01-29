@@ -7,7 +7,7 @@ interface Props {
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function Pagination({ total, limit : 20, page, setPage }: Props) {
+function Pagination({ total, limit, page, setPage }: Props) {
   const numPages = Math.ceil(total / limit);
 
   return (
