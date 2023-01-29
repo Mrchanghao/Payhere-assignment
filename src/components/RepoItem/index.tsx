@@ -15,8 +15,10 @@ export const RepoItem = ({ license, owner, name, desc, star }: Props) => {
       <Column fontSize={1.2}>
         {owner}/{name}
       </Column>
-      <Column fontSize={1}>{desc}</Column>
-      <Column fontSize={1}>
+      <Column color={"#304156"} fontSize={1}>
+        {desc}
+      </Column>
+      <Column color={"#304156"} fontSize={1}>
         <Star />
         {star}
         {license && <p>{license}</p>}
@@ -38,10 +40,10 @@ const Box = styled.div`
   align-items: flex-start;
 `;
 
-const Column = styled.div<{ fontSize?: number }>`
+const Column = styled.div<{ fontSize?: number; color?: string }>`
   font-weight: bold;
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : "1.2rem")};
-  color: #0969da;
+  color: ${({ color }) => (color ? color : "#0969da")};
   height: 30%;
   display: flex;
   justify-content: flex-start;

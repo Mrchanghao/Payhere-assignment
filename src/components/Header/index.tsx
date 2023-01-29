@@ -4,7 +4,8 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { SearchState } from "../../atom/searchState";
 import { Input } from "../Input";
-import { TopHeader } from "./styles";
+import { Form, TopHeader } from "./styles";
+import { Button } from "../Button/index";
 
 // 스타일 수정
 export const Header = () => {
@@ -25,10 +26,10 @@ export const Header = () => {
   return (
     <TopHeader>
       <div>
-        <form onSubmit={submitHandler}>
+        <Form onSubmit={submitHandler}>
           <Input onChange={debounceResult} />
-          <button type="submit">search</button>
-        </form>
+          <Button type="submit">search</Button>
+        </Form>
       </div>
     </TopHeader>
   );
