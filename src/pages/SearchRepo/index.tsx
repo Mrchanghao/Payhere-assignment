@@ -16,9 +16,13 @@ export function SearchRepos() {
       name,
       owner: { login },
     } = repo;
-    setStoreRepo({
-      registeredRepo: [...storeRepo.registeredRepo, { name, owner: login }],
-    });
+    if (storeRepo.registeredRepo.length <= 4) {
+      setStoreRepo({
+        registeredRepo: [...storeRepo.registeredRepo, { name, owner: login }],
+      });
+    } else {
+      // modal 구현
+    }
   };
   if (repos.data.length === 0) return <h1>상단의 검색어를 입력하세요</h1>;
   return (
