@@ -58,3 +58,29 @@ export interface CustomRepo {
     owner: string;
   }[]
 }
+
+export interface User {
+  avatar_url: string;
+  followers_url: string;
+  following_url: string;
+  id: number;
+  repos_url: string;
+}
+
+export interface Issue  {
+  number: number;
+  html_url: string; // 주소;
+  created_at: Date;
+  comments: number;
+  comments_url: string;
+  repository_url: string;
+  state: 'open' | 'closed';
+  user: User;
+  author_association: string;
+  body: string;
+  title: string;
+  url: string;
+}
+
+export type Issues = Issue[];
+

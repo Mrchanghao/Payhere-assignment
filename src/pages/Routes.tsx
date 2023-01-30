@@ -6,7 +6,7 @@ export const Routes = () => {
   return (
     <ReactRouterRoutes>
       <Route path="/" element={<SearchRepos />} />
-      <Route path="/repo/:repoId" element={<IssueListPage />} />
+      <Route path="/repo/:repoName/:ownerName" element={<IssueListPage />} />
       <Route path="*" element={<Navigate replace to="/" />} />
     </ReactRouterRoutes>
   );

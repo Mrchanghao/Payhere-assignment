@@ -9,13 +9,10 @@ export function useRouter() {
       back(steps = 1) {
         navigate(-steps);
       },
-      push(path: RoutePath, search?: any) {
+      push(path: string, search?: any) {
         navigate({ pathname: path, search: search ? stringify(search, { indices: false }) : undefined });
       },
     };
   }, [navigate]);
 }
 
-export type RoutePath = 
-| '/'
-| '/repos/:repoId'
