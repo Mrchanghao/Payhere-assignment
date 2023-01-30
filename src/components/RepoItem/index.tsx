@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Star } from "./Star";
 
@@ -7,15 +8,18 @@ interface Props {
   desc?: string;
   star?: number;
   license?: string;
+  id: number;
+  onClick: () => void;
 }
 
-export const RepoItem = ({ license, owner, name, desc, star }: Props) => {
+export const RepoItem = ({ onClick, license, owner, name, desc, star, id }: Props) => {
+ 
   return (
-    <Box>
+    <Box onClick={onClick}>
       <Column fontSize={1.2}>
         {owner}/{name}
       </Column>
-      <Column color={"#304156"} fontSize={1}>
+      <Column color={"#304156"} fontSize={1} height={40}>
         {desc}
       </Column>
       <Column color={"#304156"} fontSize={1}>
@@ -40,11 +44,11 @@ const Box = styled.div`
   align-items: flex-start;
 `;
 
-const Column = styled.div<{ fontSize?: number; color?: string }>`
+const Column = styled.div<{ fontSize?: number; color?: string, height?: number }>`
   font-weight: bold;
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : "1.2rem")};
   color: ${({ color }) => (color ? color : "#0969da")};
-  height: 30%;
+  height: ${({height}) => height ? `${height}%` : '30%'};
   display: flex;
   justify-content: flex-start;
   align-items: center;

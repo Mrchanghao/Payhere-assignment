@@ -35,6 +35,7 @@ const ButtonWrapper = styled.button<{ bg: "primary" | "danger" }>`
   justify-content: center;
   position: relative;
   width: 150px;
+  cursor: pointer;
   background-color: ${({ bg }) => (bg === "danger" ? "red" : "#0969da")};
   font-weight: 600;
   max-height: 56px;

@@ -10,3 +10,10 @@ export const repoState = atom<CustomRepo>({
   } ,
   effects: [localStorageEffect('repos')]
 })
+
+export const repoInfoState = atom<{ id: number;
+  name: string;
+  owner: string} | null>({
+    key: 'repoInfoState',
+    default: null,
+  })

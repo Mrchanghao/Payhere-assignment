@@ -51,7 +51,9 @@ export interface Owner {
 }
 
 export interface CustomRepo {
+  
   registeredRepo: {
+    id: number;
     name: string;
     owner: string;
   }[]

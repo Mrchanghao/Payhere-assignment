@@ -2,21 +2,18 @@ import styled from "styled-components";
 
 export const Star = () => {
   return (
-    <Svg>
-      <symbol id="star" viewBox="0 0 98 92" />
-      <title>star</title>
-      <path
-        stroke="#000"
-        stroke-width="5"
-        d="M49 73.5L22.55 87.406l5.05-29.453-21.398-20.86 29.573-4.296L49 6l13.225 26.797 29.573 4.297-21.4 20.86 5.052 29.452z"
-      />
-    </Svg>
+  	<Svg width={30} height={30} className="star rating" data-rating="1">
+    <polygon points="M9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" />
+  </Svg>
   );
 };
 
 const Svg = styled.svg`
-  width: 1rem;
-  height: 1rem;
+ 
   fill: white;
+  margin-right: 0.5rem;
   pointer-events: none;
+  polygon {
+      fill: #d8d8d8;
+    }
 `;

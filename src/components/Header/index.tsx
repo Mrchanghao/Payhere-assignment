@@ -20,7 +20,7 @@ export const Header = () => {
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearch("");
+    
   };
 
   return (

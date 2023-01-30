@@ -30,7 +30,6 @@ const Wrapper = styled.div`
 export function Layout({ children }: { children: ReactNode }) {
   return (
     <Wrapper>
-      <Header />
       <Container>{children}</Container>
     </Wrapper>
   );

@@ -12,16 +12,16 @@ import { queryClient } from "../utils/queryClient";
 // url
 // https://api.github.com/repos/OWNER/REPO/issues
 
-async function getIssues(owner: string, repo: string) {
-  const { data } = (await request.get(`/repos/${owner}/${repo}/issues`)) as any;
+async function getIssues(owner: string, repo: string, page: number) {
+  const { data } = (await request.get(`/repos/${owner}/${repo}/issues?per_page=20&page=${page}`)) as any;
 
   return data;
 }
 
-export function useTreatments(owner: string, repo: string): any[] {
+export function useIssues(owner: string, repo: string, page: number): any[] {
   const fallback: any[] = [];
   const { data = fallback } = useQuery(["repo", "issue"], () =>
-    getIssues(owner, repo)
+    getIssues(owner, repo, page)
   );
   return data;
 }

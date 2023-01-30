@@ -11,13 +11,15 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
 import { Repo, Repos } from "../types";
 
+
+
 async function searchRepos(queryStr: string, page = 1): Promise<Repos | null> {
   if (queryStr.length) {
     // TODO
     // type 정의
     // @ts-ignore
     const data = await request.get<Repos>(
-      `/search/repositories?q=${queryStr}&per_page=20&page=${page}`
+      `/search/repositories?q=${queryStr}&per_page=10&page=${page}`
     );
     return data;
   } else {
@@ -25,18 +27,20 @@ async function searchRepos(queryStr: string, page = 1): Promise<Repos | null> {
   }
 }
 
-function getQueryString() {
+export function getQueryString() {
   const queryStr = useRecoilValue(SearchState);
   return queryStr;
 }
 
-export function useRepos() {
+
+
+export function useRepos(page: number) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Repo[]>([]);
   const searchStr = getQueryString();
   const getRepo = async () => {
     setLoading(true);
-    const { items } = (await searchRepos(searchStr)) as Repos;
+    const {items} = (await searchRepos(searchStr, page)) as Repos ;
     setData([...items]);
     setLoading(false);
   };
