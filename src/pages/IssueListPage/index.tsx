@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { repoInfoState } from "../../atom/repoState";
 import { useIssues } from "../../hooks/useIssues";
@@ -6,14 +7,16 @@ import { useRouter } from "../routing";
 import { useParams } from "react-router-dom";
 import { stringify } from "qs";
 import { PageWrapper } from "../SearchRepo/styles";
+import { IssueList } from "../../components/IssueList";
+import { LoadingIndicator } from "../../components/LoadingIndicator";
 
 export const IssueListPage = () => {
   const [page, setPage] = useState(1);
   const params = useParams<{ repoName: string; ownerName: string }>();
   console.log(params);
   const [repoInfo, setRepoInfo] = useRecoilState(repoInfoState);
-
-  const issues = useIssues(repoInfo.owner, repoInfo.name, page);
+   
+  const {data, loading} = useIssues(repoInfo.owner, repoInfo.name, page);
 
   const router = useRouter();
   useEffect(() => {
@@ -25,10 +28,26 @@ export const IssueListPage = () => {
     }
   }, [repoInfo, params]);
 
-  console.log(issues);
+
+  if (loading === true) {
+    return <LoadingIndicator />
+  }
   return (
     <PageWrapper>
-      <h1>Issue List</h1>
+      <TextWrapper>
+        <h2>{repoInfo.name}'s Issue</h2>
+      </TextWrapper>
+      <IssueList issueList={data} ownerName={repoInfo.owner} repoName={repoInfo.name} />
     </PageWrapper>
   );
 };
+
+
+
+
+const TextWrapper = styled.div`
+  display: flex;
+  width: 70%;
+  margin: 20px;
+  justify-content: flex-start;
+`

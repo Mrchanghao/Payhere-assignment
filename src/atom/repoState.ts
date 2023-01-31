@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom, selectorFamily } from 'recoil';
 import { CustomRepo } from '../types';
 import { localStorageEffect } from '../utils/Storage';
 
@@ -11,6 +11,8 @@ export const repoState = atom<CustomRepo>({
   effects: [localStorageEffect('repos')]
 })
 
+
+
 export const repoInfoState = atom<{ 
   name: string;
   owner: string}>({
@@ -20,3 +22,5 @@ export const repoInfoState = atom<{
       owner: '',
     },
   })
+
+

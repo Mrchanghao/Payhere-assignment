@@ -50,6 +50,7 @@ const Column = styled.div<{ fontSize?: number; color?: string, height?: number }
   color: ${({ color }) => (color ? color : "#0969da")};
   height: ${({height}) => height ? `${height}%` : '30%'};
   display: flex;
+  padding: 0 1.1rem;
   justify-content: flex-start;
   align-items: center;
 `;

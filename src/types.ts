@@ -72,6 +72,7 @@ export interface Issue  {
   html_url: string; // 주소;
   created_at: Date;
   comments: number;
+  id: number;
   comments_url: string;
   repository_url: string;
   state: 'open' | 'closed';

@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import svgrPlugin from "vite-plugin-svgr";
+import macrosPlugin from "vite-plugin-babel-macros"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,5 +16,6 @@ export default defineConfig({
         // ...svgr options (https://react-svgr.com/docs/options/)
       },
     }),
+    macrosPlugin(),
   ],
 })

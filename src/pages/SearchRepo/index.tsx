@@ -67,6 +67,7 @@ export function SearchRepos() {
                     setRepoInfo({
                       name: repo.name,
                       owner: repo.owner.login,
+                    
                     });
                     router.push(`/repo/${repo.name}/${repo.owner.login}`);
                   }}
