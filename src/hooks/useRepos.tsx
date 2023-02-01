@@ -9,7 +9,7 @@ import { queryClient } from "../utils/queryClient";
 import { SearchState } from "../atom/searchState";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
-import { Repo, Repos } from "../types";
+import { Repo, Repos, State } from "../types";
 
 
 

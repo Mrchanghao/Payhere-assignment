@@ -75,7 +75,7 @@ export interface Issue  {
   id: number;
   comments_url: string;
   repository_url: string;
-  state: 'open' | 'closed';
+  state: State;
   user: User;
   author_association: string;
   body: string;
@@ -85,3 +85,4 @@ export interface Issue  {
 
 export type Issues = Issue[];
 
+export type State = 'open' | 'closed' | 'all'

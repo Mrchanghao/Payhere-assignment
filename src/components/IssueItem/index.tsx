@@ -7,20 +7,19 @@ import { CommnetIcon } from "./CommentIcon";
 
 interface IssueProps {
   issue: Issue;
-  ownerName: string;
-  repoName: string;
+  
 }
 
-export const IssueItem = ({issue, ownerName, repoName}: IssueProps) => {
+export const IssueItem = ({issue}: IssueProps) => {
   
-  const pushToUrl = (issueNumber: number, repoName: string, ownerName: string) => {
+  const pushToUrl = () => {
     if(window) {
-      // https://github/ownerName/repoName/issues/number
-      window.location.href = `https://github.com/${ownerName}/${repoName}/issues/${issueNumber}`;
+      window.location.href = issue.html_url;
+     
     }
   }
   return (
-    <ItemWrapper onClick={() => pushToUrl(issue.number, repoName, ownerName)} justifyContent="space-between" >
+    <ItemWrapper onClick={pushToUrl} justifyContent="space-between" >
       <FlexBox>
         <Circle state={issue.state} />
         <h4>{issue.title}</h4>
@@ -36,9 +35,10 @@ export const IssueItem = ({issue, ownerName, repoName}: IssueProps) => {
 
 const ItemWrapper = styled(FlexBox)`
   background-color: transparent;
-  width: 98%;
+  width: 98.7%;
   border-bottom: 1px solid #304156;
   padding: 10px;
+  
   cursor: pointer;
   
   height: 62px;

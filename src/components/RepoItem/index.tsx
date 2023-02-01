@@ -35,7 +35,8 @@ const Box = styled.div`
   padding: 24px 0 24px 0;
   background-color: #fff;
   height: 113px;
-  width: 80%;
+  width: 100%;
+  /* min-width: 100%; */
   border-top: 1px solid #d0d7de;
   color: #24292f;
   display: flex;
@@ -50,6 +51,8 @@ const Column = styled.div<{ fontSize?: number; color?: string, height?: number }
   color: ${({ color }) => (color ? color : "#0969da")};
   height: ${({height}) => height ? `${height}%` : '30%'};
   display: flex;
+  width: 100%;
+  min-width: 100%;
   padding: 0 1.1rem;
   justify-content: flex-start;
   align-items: center;

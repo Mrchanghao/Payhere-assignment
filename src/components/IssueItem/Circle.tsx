@@ -1,6 +1,7 @@
 import styled from "styled-components"
+import { State } from "../../types"
 
-export const Circle = ({state} : {state: string}) => {
+export const Circle = ({state} : {state: State}) => {
   if (state !== 'open') {
     return (
       <Svg state={state}  viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
@@ -18,7 +19,7 @@ export const Circle = ({state} : {state: string}) => {
 }
 
 
-export const Svg = styled.svg<{state: string}>`
+export const Svg = styled.svg<{state: State}>`
   display: inline-block;
   overflow: visible !important;
   vertical-align: text-bottom;

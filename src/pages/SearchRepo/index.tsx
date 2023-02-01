@@ -32,7 +32,7 @@ export function SearchRepos() {
     } = repo;
 
     if (
-      storeRepo.registeredRepo.length <= 4 &&
+      storeRepo.registeredRepo.length < 4 &&
       validRepo(repo, storeRepo) === false
     ) {
       // 같은 repo 면 등록 안 되는 로직 구현 해야함
@@ -79,7 +79,7 @@ export function SearchRepos() {
                   // license={repo.}
                 />
 
-                <Button onClick={() => registerRepo(repo)}>등록</Button>
+                <Button onClick={() => registerRepo(repo)}>저장소 등록</Button>
               </ListWrapper>
             );
           })}

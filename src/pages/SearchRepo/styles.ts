@@ -11,7 +11,7 @@ export const ListWrapper = styled.li`
 
 
 export const PageWrapper = styled.section`
-
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
@@ -26,5 +26,6 @@ export const Ul = styled.ul`
   flex-direction: column;
   align-items: center;
   padding: 0;
+  min-width: 70%;
   margin-left: 10%;
 `
