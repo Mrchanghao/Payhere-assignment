@@ -20,14 +20,14 @@ export const Header = () => {
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearch(query);
-    setQuery('');
+    
   };
 
   return (
     <TopHeader>
       <div>
         <Form onSubmit={(e) => submitHandler(e)}>
-          <Input value={query} onChange={onChangeHandler} />
+          <Input placeholder="repo 이름을 검색해주세요" value={query} onChange={onChangeHandler} />
           <Button type="submit">search</Button>
         </Form>
       </div>

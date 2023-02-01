@@ -1,34 +1,35 @@
+import { useRecoilValue } from "recoil";
 import styled from "styled-components"
-import { Issues } from "../../types"
+import { issuesListAsyncState } from "../../atom/issueState";
+import { Issues, State } from "../../types"
 import { FlexBox } from "../FlexBox";
 import { IssueItem } from "../IssueItem";
 import { LoadingIndicator } from "../LoadingIndicator";
 
 interface IssueListProps {
-  issueList: Issues;
+  // issueList: Issues;
+  state: State;
   totalIssue?: number;
   ownerName: string;
-  loading: boolean;
+  page: number;
+  // loading: boolean;
   repoName: string;
 }
 
-export const IssueList = ({ loading, issueList, totalIssue, repoName, ownerName}: IssueListProps) => {
-  console.log(issueList);
- if (loading === true) {
-    return <FlexBox style={{height: '100%'}}>
-      <LoadingIndicator />
-    </FlexBox>
-  }
-  return (
-    <ListWrapper>
-      <GridWrapper>
+export const IssueList = ({ state, totalIssue, repoName, ownerName, page}: IssueListProps) => {
+  const issueList = useRecoilValue(issuesListAsyncState({owner: ownerName, repo: repoName, state, page}))
+ 
+if (issueList.length === 0 || !issueList) return null;
 
+return (
+      <ListWrapper>
+      <GridWrapper>
       {issueList.map((issue) => {
         return <IssueItem key={issue.id} issue={issue} />
       })}
        </GridWrapper>
     </ListWrapper>
-  )
+)
 }
 
 

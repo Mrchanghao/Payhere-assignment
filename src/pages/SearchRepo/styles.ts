@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FlexBox } from "../../components/FlexBox";
 
 
 export const ListWrapper = styled.li`
@@ -23,12 +24,9 @@ export const PageWrapper = styled.section`
   align-items: center;
 `
 
-export const Ul = styled.ul`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
-  min-width: 70%;
-  margin-left: 10%;
-`
+
+
+export const ModalBtnBox = styled(FlexBox)`
+  width: 100%;
+  margin-top: 40px;
+`;
