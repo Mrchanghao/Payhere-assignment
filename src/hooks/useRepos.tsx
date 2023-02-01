@@ -45,7 +45,7 @@ export function useRepos(page: number) {
     setLoading(false);
   };
   useEffect(() => {
-    if (searchStr.length) {
+    if (searchStr && searchStr.length) {
       getRepo();
     }
   }, [searchStr]);

@@ -79,7 +79,7 @@ export function SearchRepos() {
                   // license={repo.}
                 />
 
-                <Button onClick={() => registerRepo(repo)}>저장소 등록</Button>
+                <Button style={{marginLeft: '20px'}} onClick={() => registerRepo(repo)}>저장소 등록</Button>
               </ListWrapper>
             );
           })}

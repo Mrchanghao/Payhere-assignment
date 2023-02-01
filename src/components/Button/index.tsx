@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { CSSProperties, PropsWithChildren } from "react";
 import styled from "styled-components";
 
 type ButtonProps = PropsWithChildren<{
@@ -7,6 +7,7 @@ type ButtonProps = PropsWithChildren<{
   disabled?: boolean;
   type?: "submit" | "button";
   bg?: "primary" | "danger";
+  style?: CSSProperties;
 }>;
 
 export const Button = ({
@@ -15,11 +16,13 @@ export const Button = ({
   onClick,
   disabled,
   children,
+  style,
 }: ButtonProps) => {
   const btn = type || "button";
   const background = bg || "primary";
   return (
     <ButtonWrapper
+    style={{...style}}
       bg={background}
       type={btn}
       onClick={onClick}

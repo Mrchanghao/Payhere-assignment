@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { numberFormat } from "../../utils/numberFormat";
 import { Star } from "./Star";
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
   onClick: () => void;
 }
 
-export const RepoItem = ({ onClick, license, owner, name, desc, star, id }: Props) => {
+export const RepoItem = ({ onClick, license, owner, name, desc, star: starCount, id }: Props) => {
  
   return (
     <Box onClick={onClick}>
@@ -24,7 +25,7 @@ export const RepoItem = ({ onClick, license, owner, name, desc, star, id }: Prop
       </Column>
       <Column color={"#304156"} fontSize={1}>
         <Star />
-        {star}
+        {starCount && numberFormat(starCount)}
         {license && <p>{license}</p>}
       </Column>
     </Box>
@@ -35,14 +36,16 @@ const Box = styled.div`
   padding: 24px 0 24px 0;
   background-color: #fff;
   height: 113px;
-  width: 100%;
+  width: 80%;
   /* min-width: 100%; */
   border-top: 1px solid #d0d7de;
   color: #24292f;
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  
 `;
 
 const Column = styled.div<{ fontSize?: number; color?: string, height?: number }>`

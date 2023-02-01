@@ -1,20 +1,17 @@
 import styled from "styled-components";
+import Icon from '../../assets/star_icon.svg';
 
 export const Star = () => {
   return (
-  	<Svg width={30} height={30} className="star rating" data-rating="1">
-    <polygon stroke="black" points="M9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" />
-  </Svg>
+  	<Svg src={Icon} alt="icon" />
   );
 };
 
-const Svg = styled.svg`
-  /* background-color: red; */
-  fill: white;
+const Svg = styled.img`
+ 
+width: 15px;
+height: 15px;
   margin-right: 0.5rem;
   pointer-events: none;
-  polygon {
-      
-      fill: #d8d8d8;
-    }
+  
 `;

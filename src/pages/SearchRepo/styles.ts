@@ -6,7 +6,10 @@ export const ListWrapper = styled.li`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  background-color: ${props => props.theme.background}
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: ${props => props.theme.background};
+  
 `
 
 
