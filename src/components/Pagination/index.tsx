@@ -1,29 +1,64 @@
 import styled from "styled-components";
+import useUId from "../../api/useId";
+import { DOTS, usePagination } from "../../hooks/usePagination";
 
 interface Props {
   total: number;
   limit: number;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  siblingCount?: number;
 }
 
-function Pagination({ total, limit, page, setPage }: Props) {
-  const numPages = Math.ceil(total / limit);
+export function Pagination({
+  total,
+  limit,
+  page,
+  setPage,
+  siblingCount,
+}: Props) {
+  const id = useUId();
+  const paginationRange = usePagination({
+    currentPage: page,
+    totalCount: total,
+    siblingCount,
+    pageSize: limit,
+  });
+
+  if (page === 0 || (paginationRange && paginationRange.length < 2)) {
+    return null;
+  }
+
+  const onNext = () => {
+    setPage(page + 1);
+  };
+
+  const onPrevious = () => {
+    setPage(page - 1);
+  };
+
+  let lastPage = paginationRange && paginationRange[paginationRange.length - 1];
 
   return (
     <>
       <Nav>
-        <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
+        <Button onClick={onPrevious} disabled={page === 1}>
           &lt;
         </Button>
-        {Array(numPages)
-          .fill(null)
-          .map((_, i) => (
-            <Button key={i + 1} onClick={() => setPage(i + 1)}>
-              {i + 1}
+        {paginationRange?.map((pageNumber) => {
+          if (pageNumber === DOTS) {
+            return <Button key={id}>...</Button>;
+          }
+          return (
+            <Button
+              key={id}
+              active={page === pageNumber}
+              onClick={() => setPage(pageNumber as number)}>
+              {pageNumber}
             </Button>
-          ))}
-        <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+          );
+        })}
+        <Button onClick={onNext} disabled={page === lastPage}>
           &gt;
         </Button>
       </Nav>
@@ -39,12 +74,12 @@ const Nav = styled.nav`
   margin: 16px;
 `;
 
-const Button = styled.button`
+const Button = styled.button<{ active?: boolean }>`
   border: none;
   border-radius: 8px;
   padding: 8px;
   margin: 0;
-  background: black;
+  background: ${({ active }) => (active ? "tomato" : "black")};
   color: white;
   font-size: 1rem;
 
