@@ -2,7 +2,6 @@ import { atom, selectorFamily } from 'recoil';
 import { searchRepos } from '../api/searchRepos';
 import { CustomRepo, Repos } from '../types';
 import { request } from '../utils/axiosSetting';
-import { localStorageEffect } from '../utils/Storage';
 import { SearchState } from './searchState';
 
 import { recoilPersist } from 'recoil-persist'
