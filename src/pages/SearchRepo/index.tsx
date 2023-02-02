@@ -1,4 +1,4 @@
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, memo } from "react";
 import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from "recoil";
 import { repoAsyncState, repoInfoState, repoState } from "../../atom/repoState";
 import { SearchState } from "../../atom/searchState";
@@ -15,7 +15,7 @@ import { RepoList } from "../../components/RepoList";
 import { Pagination } from "../../components/Pagination";
 import { validRepo } from "../../utils/manageRepo";
 
-export function SearchRepos() {
+export const SearchRepos = memo(() => {
   const [storeRepo, setStoreRepo] = useRecoilState(repoState);
   const [repoInfo, setRepoInfo] = useRecoilState(repoInfoState);
   const [page, setPage] = useState(1);
@@ -102,4 +102,4 @@ export function SearchRepos() {
       </PageWrapper>
     </>
   );
-}
+});

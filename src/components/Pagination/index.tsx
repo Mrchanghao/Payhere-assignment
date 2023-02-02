@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { DOTS, usePagination } from "../../hooks/usePagination";
 import { v4 as uuidv4 } from "uuid";
+import { memo } from "react";
 
 interface Props {
   total: number;
@@ -10,60 +11,57 @@ interface Props {
   siblingCount?: number;
 }
 
-export function Pagination({
-  total,
-  limit,
-  page,
-  setPage,
-  siblingCount,
-}: Props) {
-  const paginationRange = usePagination({
-    currentPage: page,
-    totalCount: total,
-    siblingCount,
-    pageSize: limit,
-  });
+export const Pagination = memo(
+  ({ total, limit, page, setPage, siblingCount }: Props) => {
+    const paginationRange = usePagination({
+      currentPage: page,
+      totalCount: total,
+      siblingCount,
+      pageSize: limit,
+    });
 
-  if (page === 0 || (paginationRange && paginationRange.length < 2)) {
-    return null;
+    if (page === 0 || (paginationRange && paginationRange.length < 2)) {
+      return null;
+    }
+
+    const onNext = () => {
+      setPage(page + 1);
+    };
+
+    const onPrevious = () => {
+      setPage(page - 1);
+    };
+
+    let lastPage =
+      paginationRange && paginationRange[paginationRange.length - 1];
+
+    return (
+      <>
+        <Nav>
+          <Button onClick={onPrevious} disabled={page === 1}>
+            &lt;
+          </Button>
+          {paginationRange?.map((pageNumber) => {
+            if (pageNumber === DOTS) {
+              return <Button key={uuidv4()}>...</Button>;
+            }
+            return (
+              <Button
+                key={uuidv4()}
+                active={page === pageNumber}
+                onClick={() => setPage(pageNumber as number)}>
+                {pageNumber}
+              </Button>
+            );
+          })}
+          <Button onClick={onNext} disabled={page === lastPage}>
+            &gt;
+          </Button>
+        </Nav>
+      </>
+    );
   }
-
-  const onNext = () => {
-    setPage(page + 1);
-  };
-
-  const onPrevious = () => {
-    setPage(page - 1);
-  };
-
-  let lastPage = paginationRange && paginationRange[paginationRange.length - 1];
-
-  return (
-    <>
-      <Nav>
-        <Button onClick={onPrevious} disabled={page === 1}>
-          &lt;
-        </Button>
-        {paginationRange?.map((pageNumber) => {
-          if (pageNumber === DOTS) {
-            return <Button key={uuidv4()}>...</Button>;
-          }
-          return (
-            <Button
-              key={uuidv4()}
-              active={page === pageNumber}
-              onClick={() => setPage(pageNumber as number)}>
-              {pageNumber}
-            </Button>
-          );
-        })}
-        <Button onClick={onNext} disabled={page === lastPage}>
-          &gt;
-        </Button>
-      </Nav>
-    </>
-  );
-}
+);
 
 const Nav = styled.nav`
   display: flex;

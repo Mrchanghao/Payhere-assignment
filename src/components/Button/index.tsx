@@ -22,7 +22,7 @@ export const Button = ({
   const background = bg || "primary";
   return (
     <ButtonWrapper
-    style={{...style}}
+      style={{ ...style }}
       bg={background}
       type={btn}
       onClick={onClick}
@@ -39,7 +39,7 @@ const ButtonWrapper = styled.button<{ bg: "primary" | "danger" }>`
   position: relative;
   width: 150px;
   cursor: pointer;
-  background-color: ${({ bg }) => (bg === "danger" ? "red" : "#0969da")};
+  background-color: ${({ bg }) => (bg === "danger" ? "tomato" : "#0969da")};
   font-weight: 600;
   max-height: 56px;
   height: 56px;

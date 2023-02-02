@@ -5,13 +5,17 @@ import { request } from '../utils/axiosSetting';
 import { localStorageEffect } from '../utils/Storage';
 import { SearchState } from './searchState';
 
+import { recoilPersist } from 'recoil-persist'
+
+const { persistAtom } = recoilPersist()
 
 export const repoState = atom<CustomRepo>({
   key: 'repoState',
   default: {
     registeredRepo: []
   } ,
-  effects: [localStorageEffect('repos')]
+  effects_UNSTABLE: [persistAtom]
+  // effects: [localStorageEffect('repos')]
 })
 
 

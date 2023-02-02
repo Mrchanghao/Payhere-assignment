@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense, memo } from "react";
 import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import { repoInfoState } from "../../atom/repoState";
 import { useRouter } from "../routing";
@@ -8,20 +8,13 @@ import { IssueList } from "../../components/IssueList";
 import { LoadingIndicator } from "../../components/LoadingIndicator";
 import { State } from "../../types";
 import { FlexBox } from "../../components/FlexBox";
-import {
-  BackBtn,
-  StateAllSpan,
-  StateClosedSpan,
-  StateH2,
-  StateOpenSpan,
-  TextWrapper,
-} from "./styles";
+import { BackBtn, TextWrapper } from "./styles";
 import { firstIssueItem } from "../../atom/issueState";
 import { Pagination } from "../../components/Pagination";
 
-export const IssueListPage = () => {
+export const IssueListPage = memo(() => {
   const [page, setPage] = useState(1);
-  const [state, setState] = useState<State>("open");
+  const [state, setState] = useState<State>("all");
   const params = useParams<{ repoName: string; ownerName: string }>();
 
   const [repoInfo, setRepoInfo] = useRecoilState(repoInfoState);
@@ -50,17 +43,6 @@ export const IssueListPage = () => {
           <span>Back</span>
         </BackBtn>
         <h2>{repoInfo.name}'s Issue</h2>
-        <StateH2>
-          <StateOpenSpan onClick={() => setState("open")} state={state}>
-            open
-          </StateOpenSpan>
-          <StateClosedSpan onClick={() => setState("closed")} state={state}>
-            closed
-          </StateClosedSpan>
-          <StateAllSpan onClick={() => setState("all")} state={state}>
-            All
-          </StateAllSpan>
-        </StateH2>
       </TextWrapper>
       <Suspense
         fallback={
@@ -82,4 +64,4 @@ export const IssueListPage = () => {
       )}
     </PageWrapper>
   );
-};
+});
