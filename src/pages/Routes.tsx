@@ -7,14 +7,12 @@ import { SearchRepos } from "./SearchRepo";
 
 export const Routes = () => {
   return (
-    <>
-   
-    <ReactRouterRoutes>
-      <Route path="/" element={<SearchRepos />}/>
-      <Route path="/repo/:repoName/:ownerName" element={<IssueListPage />} />
-      <Route path="*" element={<Navigate replace to="/" />} />
-    </ReactRouterRoutes>
-   
-    </>
+    <FlexBox>
+      <ReactRouterRoutes>
+        <Route path="/" element={<SearchRepos />} />
+        <Route path="/repo/:repoName/:ownerName" element={<IssueListPage />} />
+        <Route path="*" element={<Navigate replace to="/" />} />
+      </ReactRouterRoutes>
+    </FlexBox>
   );
 };

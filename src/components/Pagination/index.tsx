@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import useUId from "../../api/useId";
 import { DOTS, usePagination } from "../../hooks/usePagination";
+import { v4 as uuidv4 } from "uuid";
 
 interface Props {
   total: number;
@@ -17,7 +17,6 @@ export function Pagination({
   setPage,
   siblingCount,
 }: Props) {
-  const id = useUId();
   const paginationRange = usePagination({
     currentPage: page,
     totalCount: total,
@@ -47,11 +46,11 @@ export function Pagination({
         </Button>
         {paginationRange?.map((pageNumber) => {
           if (pageNumber === DOTS) {
-            return <Button key={id}>...</Button>;
+            return <Button key={uuidv4()}>...</Button>;
           }
           return (
             <Button
-              key={id}
+              key={uuidv4()}
               active={page === pageNumber}
               onClick={() => setPage(pageNumber as number)}>
               {pageNumber}

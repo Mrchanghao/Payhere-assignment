@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { request } from "../utils/axiosSetting";
 import { Issues, State } from "../types";
 
@@ -11,7 +10,7 @@ import { Issues, State } from "../types";
 
 
 
-async function getIssues(owner: string, repo: string, state: State, page: number) {
+export async function getIssues(owner: string, repo: string, state: State, page: number) {
   // state  --> open closed all 
   const data = await request.get<Issues>(
     `/repos/${owner}/${repo}/issues?per_page=20&page=${page}&state=${state}`

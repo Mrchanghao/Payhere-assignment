@@ -57,6 +57,7 @@ const ListWrapper = styled.div`
   align-items: center;
   width: 100%;
   min-width: 100%;
+  margin-top: 10px;
   flex-direction: column;
 `;
 
@@ -65,35 +66,10 @@ const GridWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  padding: 0px;
-  width: 80%;
+  /* padding: 10px; */
+  width: 100%;
   cursor: pointer;
   vertical-align: middle;
   border: 1px solid #304156;
-`;
-
-const BtnNav = styled(FlexBox)`
-  margin-top: 20px;
-`;
-
-const NavButton = styled.button`
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  margin: 0;
-  background: black;
-  color: white;
-  font-size: 1rem;
-  margin-left: 2rem;
-  &:hover {
-    background: tomato;
-    cursor: pointer;
-    transform: translateY(-2px);
-  }
-
-  &[disabled] {
-    background: grey;
-    cursor: revert;
-    transform: revert;
-  }
+  border-bottom: none;
 `;

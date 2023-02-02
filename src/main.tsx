@@ -4,24 +4,18 @@ import App from "./App";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/themes";
 import { BrowserRouter as Router } from "react-router-dom";
-import { QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { queryClient } from "./utils/queryClient";
 import { RecoilRoot } from "recoil";
 import { GlobalStyle } from "./styles/global.styles";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          <Router>
-            <GlobalStyle />
-            <App />
-          </Router>
-        </ThemeProvider>
-      </RecoilRoot>
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <GlobalStyle />
+          <App />
+        </Router>
+      </ThemeProvider>
+    </RecoilRoot>
   </React.StrictMode>
 );

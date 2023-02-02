@@ -1,19 +1,11 @@
-import {
-  UseMutateFunction,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "react-query";
 import { request } from "../utils/axiosSetting";
-import { queryClient } from "../utils/queryClient";
 import { SearchState } from "../atom/searchState";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { useEffect, useState } from "react";
+import {  useRecoilValue } from "recoil";
 import { Repo, Repos, State } from "../types";
 
 
 
-async function searchRepos(queryStr: string, page = 1): Promise<Repos | null> {
+export async function searchRepos(queryStr: string, page = 1): Promise<Repos | null> {
   if (queryStr.length) {
     // TODO
     // type 정의
@@ -34,23 +26,3 @@ export function getQueryString() {
 
 
 
-export function useRepos(page: number) {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<Repo[]>([]);
-  const searchStr = getQueryString();
-  const getRepo = async () => {
-    setLoading(true);
-    const {items} = (await searchRepos(searchStr, page)) as Repos ;
-    setData([...items]);
-    setLoading(false);
-  };
-  useEffect(() => {
-    if (searchStr && searchStr.length) {
-      getRepo();
-    }
-  }, [searchStr]);
-  return {
-    data,
-    loading,
-  };
-}

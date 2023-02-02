@@ -1,10 +1,8 @@
 import { useState, useEffect, Suspense } from "react";
-import styled from "styled-components";
-import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from "recoil";
+import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import { repoInfoState } from "../../atom/repoState";
 import { useRouter } from "../routing";
 import { useParams } from "react-router-dom";
-import { stringify } from "qs";
 import { PageWrapper } from "../SearchRepo/styles";
 import { IssueList } from "../../components/IssueList";
 import { LoadingIndicator } from "../../components/LoadingIndicator";
@@ -18,15 +16,14 @@ import {
   StateOpenSpan,
   TextWrapper,
 } from "./styles";
-import { firstIssueItem, issuesListAsyncState } from "../../atom/issueState";
+import { firstIssueItem } from "../../atom/issueState";
 import { Pagination } from "../../components/Pagination";
 
 export const IssueListPage = () => {
   const [page, setPage] = useState(1);
-  const [totalCount, setTotalCount] = useState(0);
   const [state, setState] = useState<State>("open");
   const params = useParams<{ repoName: string; ownerName: string }>();
-  console.log(params);
+
   const [repoInfo, setRepoInfo] = useRecoilState(repoInfoState);
   const { state: loading, contents } = useRecoilValueLoadable(
     firstIssueItem({

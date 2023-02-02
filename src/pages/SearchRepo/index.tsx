@@ -1,24 +1,21 @@
-import { Suspense, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Suspense, useState, useEffect } from "react";
 import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from "recoil";
 import { repoAsyncState, repoInfoState, repoState } from "../../atom/repoState";
 import { SearchState } from "../../atom/searchState";
 import { Button } from "../../components/Button";
 import { FlexBox } from "../../components/FlexBox";
 import { Header } from "../../components/Header";
-import { RepoItem } from "../../components/RepoItem";
-import { getQueryString, useRepos } from "../../api/searchRepos";
-import { CustomRepo, Repo } from "../../types";
-import { ListWrapper, ModalBtnBox, PageWrapper } from "./styles";
-import { useRouter } from "../routing";
+
+import { Repo } from "../../types";
+import { ModalBtnBox, PageWrapper } from "./styles";
 import ModalPortal from "../../components/Modal/Portal";
 import { Modal } from "../../components/Modal";
 import { LoadingIndicator } from "../../components/LoadingIndicator";
 import { RepoList } from "../../components/RepoList";
 import { Pagination } from "../../components/Pagination";
+import { validRepo } from "../../utils/manageRepo";
 
 export function SearchRepos() {
-  const searchValue = useRecoilValue(SearchState);
   const [storeRepo, setStoreRepo] = useRecoilState(repoState);
   const [repoInfo, setRepoInfo] = useRecoilState(repoInfoState);
   const [page, setPage] = useState(1);
@@ -27,16 +24,12 @@ export function SearchRepos() {
     title: string;
     label: string;
   } | null>(null);
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
   const { state, contents } = useRecoilValueLoadable(repoAsyncState({ page }));
 
   const modalControl = (open: boolean) => setModalOpen(open);
 
   // response rendering
-  const validRepo = (newRepo: Repo, repoList: CustomRepo) => {
-    return !!repoList.registeredRepo.find((el) => el.id === newRepo.id);
-  };
+
   const registerRepo = (repo: Repo) => {
     const {
       id,
@@ -44,7 +37,7 @@ export function SearchRepos() {
       owner: { login },
     } = repo;
 
-    if (storeRepo.registeredRepo.length <= 4) {
+    if (storeRepo.registeredRepo.length >= 4) {
       // 같은 repo 면 등록 안 되는 로직 구현 해야함
       setModalOpen(true);
       setModalDescription({
